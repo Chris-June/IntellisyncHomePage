@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { promotions } from '@/lib/promotions-data';
-import { CalendarDays, ChevronRight, Timer } from 'lucide-react';
+import { promotions, Promotion } from '@/lib/promotions-data';
+import { CalendarDays, ChevronRight, Timer, Mail } from 'lucide-react';
+import { useState } from 'react';
+import { PromotionsModal } from '@/components/promotions-modal';
 
 export default function Promotions() {
   const currentDate = new Date();
@@ -11,6 +13,9 @@ export default function Promotions() {
       new Date(promo.startDate) <= currentDate && 
       new Date(promo.endDate) >= currentDate
   );
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPromotion, setSelectedPromotion] = useState<Promotion | null>(null);
 
   if (activePromotions.length === 0) return null;
 
@@ -96,17 +101,36 @@ export default function Promotions() {
                   </div>
                 )}
 
-                <Button 
-                  className={promo.highlight ? 'gradient-primary w-full mt-4' : 'w-full mt-4'} 
-                  asChild
-                >
-                  <a href={promo.ctaLink}>{promo.ctaText}</a>
-                </Button>
+                <div className="mt-6 flex justify-between items-center">
+                  <Button
+                    onClick={() => {
+                      setSelectedPromotion(promo);
+                      setIsModalOpen(true);
+                    }}
+                    className="gradient-primary"
+                  >
+                    <Mail className="mr-2 h-4 w-4" />
+                    I'm Interested
+                  </Button>
+                  <Button variant="ghost" size="icon">
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Promotions Modal */}
+      <PromotionsModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedPromotion(null);
+        }}
+        selectedPromotion={selectedPromotion}
+      />
     </section>
   );
 }
