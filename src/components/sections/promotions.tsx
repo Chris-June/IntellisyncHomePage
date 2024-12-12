@@ -51,13 +51,13 @@ export default function Promotions() {
               className={`
                 relative overflow-hidden rounded-xl p-6 
                 ${promo.highlight 
-                  ? 'bg-gradient-to-br from-primary/10 via-primary/5 to-background border border-primary/20' 
-                  : 'bg-card border border-border'
+                  ? 'bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-700/40 border border-gray-700/50' 
+                  : 'bg-gradient-to-br from-gray-900/60 via-gray-800/40 to-gray-700/30 border border-border'
                 }
               `}
             >
               {promo.badge && (
-                <Badge className="absolute top-4 right-4 bg-primary/20">
+                <Badge className="absolute top-4 right-4 bg-gray-800/60">
                   {promo.badge}
                 </Badge>
               )}
@@ -70,7 +70,7 @@ export default function Promotions() {
                   <ul className="space-y-2">
                     {promo.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-2 text-sm">
-                        <ChevronRight className="h-4 w-4 text-primary" />
+                        <ChevronRight className="h-4 w-4 text-gray-400" />
                         {feature}
                       </li>
                     ))}

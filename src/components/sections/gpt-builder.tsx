@@ -118,7 +118,7 @@ export default function GptBuilder() {
             className="space-y-2"
           >
             <div className="flex items-center justify-center space-x-2 mb-4">
-              <Zap className="h-8 w-8 stroke-emerald-400" />
+              <Zap className="h-8 w-8 stroke-gray-400" />
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gradient-primary">
                 GPT Builder Platform
               </h2>
@@ -155,9 +155,9 @@ export default function GptBuilder() {
                 <Card
                   className="relative h-full transform transition-transform hover:-translate-y-1 hover:shadow-lg border-gradient"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/30 via-transparent to-emerald-50/10 rounded-lg" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-700/40 rounded-lg" />
                   <CardHeader className="relative p-6">
-                    <feature.icon className="h-6 w-6 stroke-emerald-400 mb-4" />
+                    <feature.icon className="h-6 w-6 stroke-gray-400 mb-4" />
                     <CardTitle className="text-xl">{feature.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="relative p-6">
@@ -170,7 +170,7 @@ export default function GptBuilder() {
                       onClick={() => setSelectedFeature(feature)}
                     >
                       Learn More
-                      <ExternalLink className="ml-2 h-4 w-4 stroke-emerald-400" />
+                      <ExternalLink className="ml-2 h-4 w-4 stroke-gray-400" />
                     </Button>
                   </CardContent>
                 </Card>

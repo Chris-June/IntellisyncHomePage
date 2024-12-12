@@ -66,10 +66,10 @@ export default function About() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card className="relative h-full transform transition-transform hover:-translate-y-1 hover:shadow-lg border-gradient">
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/30 via-transparent to-emerald-50/10 rounded-lg" />
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-700/40 rounded-lg" />
                 <CardContent className="relative pt-6">
                   <div className="flex items-center space-x-2 mb-4">
-                    <BadgeCheck className="h-5 w-5 text-emerald-400" />
+                    <BadgeCheck className="h-5 w-5 text-gray-400" />
                     <h3 className="font-semibold text-xl">{value.title}</h3>
                   </div>
                   <p className="text-muted-foreground mb-4">{value.description}</p>

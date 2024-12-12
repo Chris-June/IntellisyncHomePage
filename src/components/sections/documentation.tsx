@@ -122,9 +122,9 @@ export default function Documentation() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <Card className="relative h-full transform transition-transform hover:-translate-y-1 hover:shadow-lg border-gradient">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/30 via-transparent to-emerald-50/10 rounded-lg" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-700/40 rounded-lg" />
                   <CardHeader className="relative">
-                    <guide.icon className="h-8 w-8 mb-2 text-primary" />
+                    <guide.icon className="h-8 w-8 mb-2 text-gray-400" />
                     <CardTitle>{guide.title}</CardTitle>
                     <CardDescription>{guide.description}</CardDescription>
                   </CardHeader>
@@ -150,7 +150,7 @@ export default function Documentation() {
                 {Object.entries(codeExamples).map(([lang, code]) => (
                   <TabsContent key={lang} value={lang}>
                     <Card className="relative transform transition-transform hover:-translate-y-1 hover:shadow-lg border-gradient">
-                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/30 via-transparent to-emerald-50/10 rounded-lg" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-700/40 rounded-lg" />
                       <CardContent className="relative p-6">
                         <pre className="text-sm bg-muted p-4 rounded-lg overflow-x-auto">
                           <code>{code}</code>

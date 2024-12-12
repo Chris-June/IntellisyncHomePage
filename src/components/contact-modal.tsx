@@ -83,8 +83,8 @@ export function ContactModal({ isOpen, onClose, selectedTier }: ContactModalProp
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-full sm:max-w-[800px] max-h-[90vh] overflow-y-auto bg-background border-2 border-emerald-400/50 focus-within:border-emerald-400">
-        <DialogHeader className="flex-shrink-0">
+      <DialogContent className="w-full sm:max-w-[960px] max-h-[90vh] bg-background border-2 border-gray-700/50 focus-within:border-gray-600 rounded-2xl flex flex-col">
+        <DialogHeader className="flex-shrink-0 pb-6">
           <DialogTitle className="text-2xl">
             {selectedTier ? `Get Started with ${selectedTier.name} Plan` : 'Contact Us'}
           </DialogTitle>
@@ -92,106 +92,115 @@ export function ContactModal({ isOpen, onClose, selectedTier }: ContactModalProp
             Fill out the form below and we'll get back to you within 24 hours.
           </DialogDescription>
         </DialogHeader>
-        <div className="flex-1 overflow-y-auto pr-6 -mr-6">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  required
-                  value={formData.name}
-                  onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                />
+        <div className="flex-1 overflow-y-auto">
+          <div className="space-y-6 px-3">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-x-8">
+                <div className="space-y-2 min-w-0">
+                  <Label htmlFor="name">Name</Label>
+                  <Input
+                    id="name"
+                    required
+                    value={formData.name}
+                    onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                    className="w-full"
+                  />
+                </div>
+                
+                <div className="space-y-2 min-w-0">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                    className="w-full"
+                  />
+                </div>
+                
+                <div className="space-y-2 min-w-0">
+                  <Label htmlFor="phone">Phone (optional)</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={e => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                    className="w-full"
+                  />
+                </div>
               </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone (optional)</Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={e => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                />
-              </div>
-            </div>
 
-            <div className="space-y-4">
-              <Label>Additional Features</Label>
-              <div className="text-sm text-muted-foreground">
-                Select any additional features you'd like to discuss
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {addOns.map((addon) => (
-                  <div
-                    key={addon.id}
-                    className="relative flex items-center gap-1"
-                  >
-                    <Button
-                      type="button"
-                      variant={formData.selectedAddOns.includes(addon.id) ? "default" : "outline"}
-                      className="flex-1 justify-start"
-                      onClick={() => handleAddOnToggle(addon.id)}
+              <div className="space-y-3">
+                <Label>Additional Features</Label>
+                <div className="text-sm text-muted-foreground">
+                  Select any additional features you'd like to discuss
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {addOns.map((addon) => (
+                    <div
+                      key={addon.id}
+                      className="relative flex items-center gap-3"
                     >
-                      <span className="truncate">{addon.name}</span>
-                    </Button>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
-                          >
-                            <Info className="h-4 w-4 stroke-emerald-400 cursor-help" />
-                            <span className="sr-only">More information</span>
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent side="top" align="end" className="max-w-[250px]">
-                          {addon.description}
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                ))}
+                      <Button
+                        type="button"
+                        variant={formData.selectedAddOns.includes(addon.id) ? "default" : "outline"}
+                        className="flex-1 justify-start text-sm py-2 px-3 min-w-0"
+                        onClick={() => handleAddOnToggle(addon.id)}
+                      >
+                        <span className="truncate pr-2">{addon.name}</span>
+                      </Button>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 shrink-0 p-0"
+                            >
+                              <Info className="h-4 w-4 stroke-gray-400" />
+                              <span className="sr-only">More information</span>
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent side="top" align="end" className="max-w-[250px] bg-gray-900 text-gray-100">
+                            {addon.description}
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="message">Additional Information</Label>
-              <Textarea
-                id="message"
-                placeholder="Tell us about your project requirements..."
-                value={formData.message}
-                onChange={e => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                className="h-32"
-              />
-            </div>
-          </form>
+              
+              <div className="space-y-2">
+                <Label htmlFor="message">Additional Information</Label>
+                <Textarea
+                  id="message"
+                  placeholder="Tell us about your project requirements..."
+                  value={formData.message}
+                  onChange={e => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                  className="h-32 w-full"
+                />
+              </div>
+            </form>
+          </div>
         </div>
-        <DialogFooter className="flex justify-end gap-4 sticky bottom-0 bg-background py-4 border-t">
-          <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
+        <DialogFooter className="flex-shrink-0 pt-6">
+          <Button
+            variant="outline"
+            onClick={onClose}
+            disabled={isSubmitting}
+          >
             Cancel
           </Button>
-          <Button 
-            type="submit" 
-            className="gradient-primary"
+          <Button
+            type="submit"
             disabled={isSubmitting}
-            form="contact-form"
+            onClick={handleSubmit}
+            className="bg-primary"
           >
-            {isSubmitting ? 'Sending...' : 'Submit'}
+            {isSubmitting ? 'Submitting...' : 'Submit'}
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -16,6 +16,7 @@ import Footer from '@/components/sections/footer';
 import { Toaster } from '@/components/ui/sonner';
 import { useLocation } from 'react-router-dom';
 import { DialogProvider } from '@/components/ui/dialog-provider';
+import { VideoShowcase } from '@/components/sections/video-showcase';
 
 function App() {
   const location = useLocation();
@@ -36,6 +37,7 @@ function App() {
               }[location.pathname]
             ) : (
               <>
+                <VideoShowcase />
                 <Hero />
                 <Features />
                 <About />
