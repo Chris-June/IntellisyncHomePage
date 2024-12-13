@@ -126,19 +126,19 @@ export default function Features() {
                 key={index} 
                 variants={itemVariants}
               >
-                <Card className="relative h-full transform transition-transform hover:-translate-y-1 hover:shadow-lg border-gradient">
+                <Card className="relative transform transition-transform hover:-translate-y-1 hover:shadow-lg border-gradient">
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-700/40 rounded-lg" />
-                  <CardHeader className="relative p-6">
-                    <feature.icon className="h-6 w-6 stroke-gray-400 mb-4" />
-                    <CardTitle className="text-xl">{feature.title}</CardTitle>
+                  <CardHeader className="relative p-4">
+                    <feature.icon className="h-5 w-5 stroke-gray-400 mb-2" />
+                    <CardTitle className="text-lg">{feature.title}</CardTitle>
                   </CardHeader>
-                  <CardContent className="relative p-6">
-                    <CardDescription className="text-base mb-4">
+                  <CardContent className="relative p-4 pt-0">
+                    <CardDescription className="text-sm">
                       {feature.description}
                     </CardDescription>
                     <Button
                       variant="ghost"
-                      className="text-sm"
+                      className="text-sm mt-2"
                       onClick={() => setSelectedFeature(feature)}
                     >
                       Learn More

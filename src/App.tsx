@@ -4,7 +4,8 @@ import Hero from '@/components/sections/hero';
 import Features from '@/components/sections/features';
 import About from '@/components/sections/about';
 import Work from '@/components/sections/work';
-import GptBuilder from '@/components/sections/gpt-builder';
+
+import GptBuilderPage from '@/pages/gpt-builder';
 import Pricing from '@/components/sections/pricing';
 import Promotions from '@/components/sections/promotions';
 import PrivacyPolicy from '@/components/sections/policies/privacy-policy';
@@ -20,7 +21,7 @@ import { VideoShowcase } from '@/components/sections/video-showcase';
 
 function App() {
   const location = useLocation();
-  const isStaticPage = ['/privacy-policy', '/terms-of-service', '/cookie-policy', '/documentation'].includes(location.pathname);
+  const isStaticPage = ['/privacy-policy', '/terms-of-service', '/cookie-policy', '/documentation', '/gpt-builder'].includes(location.pathname);
 
   return (
     <ThemeProvider>
@@ -34,6 +35,7 @@ function App() {
                 '/terms-of-service': <TermsOfService />,
                 '/cookie-policy': <CookiePolicy />,
                 '/documentation': <Documentation />,
+                '/gpt-builder': <GptBuilderPage />,
               }[location.pathname]
             ) : (
               <>
@@ -42,10 +44,10 @@ function App() {
                 <Features />
                 <About />
                 <Work />
-                <GptBuilder />
-                <Promotions />
-                <Pricing />
+                
                 <Cta />
+                <Promotions />
+                <Pricing /> 
               </>
             )}
           </main>

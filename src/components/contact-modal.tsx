@@ -22,6 +22,22 @@ import { PricingTier } from '@/lib/gpt-pricing-data';
 import { sendContactEmail, EmailData } from '@/lib/email-service';
 import { toast } from 'sonner';
 import { Info } from 'lucide-react';
+import clsx from 'clsx';
+
+// Helper function to get max add-ons based on tier
+const getMaxAddOns = (tier: PricingTier | null | undefined) => {
+  if (!tier) return Infinity;
+  switch (tier.id) {
+    case 'basic':
+      return 2;
+    case 'professional':
+      return 4;
+    case 'premium':
+      return 4;
+    default:
+      return Infinity;
+  }
+};
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -66,12 +82,19 @@ export function ContactModal({ isOpen, onClose, selectedTier }: ContactModalProp
   const handleAddOnToggle = (addOnId: string) => {
     setFormData(prev => {
       const currentAddOns = prev.selectedAddOns;
+      const maxAllowed = getMaxAddOns(selectedTier);
       
       if (currentAddOns.includes(addOnId)) {
         return {
           ...prev,
           selectedAddOns: currentAddOns.filter((id) => id !== addOnId)
         };
+      }
+      
+      // Check if we've reached the maximum allowed add-ons
+      if (currentAddOns.length >= maxAllowed) {
+        toast.error(`You can only select up to ${maxAllowed} add-ons with the ${selectedTier?.name} plan`);
+        return prev;
       }
       
       return {
@@ -134,42 +157,58 @@ export function ContactModal({ isOpen, onClose, selectedTier }: ContactModalProp
               <div className="space-y-3">
                 <Label>Additional Features</Label>
                 <div className="text-sm text-muted-foreground">
-                  Select any additional features you'd like to discuss
+                  {selectedTier ? (
+                    <>
+                      Select up to {getMaxAddOns(selectedTier)} additional features 
+                      ({formData.selectedAddOns.length}/{getMaxAddOns(selectedTier)} selected)
+                    </>
+                  ) : (
+                    'Select any additional features you\'d like to discuss'
+                  )}
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {addOns.map((addon) => (
-                    <div
-                      key={addon.id}
-                      className="relative flex items-center gap-3"
-                    >
-                      <Button
-                        type="button"
-                        variant={formData.selectedAddOns.includes(addon.id) ? "default" : "outline"}
-                        className="flex-1 justify-start text-sm py-2 px-3 min-w-0"
-                        onClick={() => handleAddOnToggle(addon.id)}
+                  {addOns.map((addon) => {
+                    const isSelected = formData.selectedAddOns.includes(addon.id);
+                    const maxReached = !isSelected && formData.selectedAddOns.length >= getMaxAddOns(selectedTier);
+                    
+                    return (
+                      <div
+                        key={addon.id}
+                        className="relative flex items-center gap-3"
                       >
-                        <span className="truncate pr-2">{addon.name}</span>
-                      </Button>
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="icon"
-                              className="h-8 w-8 shrink-0 p-0"
-                            >
-                              <Info className="h-4 w-4 stroke-gray-400" />
-                              <span className="sr-only">More information</span>
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent side="top" align="end" className="max-w-[250px] bg-gray-900 text-gray-100">
-                            {addon.description}
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    </div>
-                  ))}
+                        <Button
+                          type="button"
+                          variant={isSelected ? "default" : "outline"}
+                          className={clsx(
+                            "flex-1 justify-start text-sm py-2 px-3 min-w-0",
+                            maxReached && "opacity-50 cursor-not-allowed"
+                          )}
+                          onClick={() => handleAddOnToggle(addon.id)}
+                          disabled={maxReached}
+                        >
+                          <span className="truncate pr-2">{addon.name}</span>
+                        </Button>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8 shrink-0 p-0"
+                              >
+                                <Info className="h-4 w-4 stroke-gray-400" />
+                                <span className="sr-only">More information</span>
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent side="top" align="end" className="max-w-[250px] bg-gray-900 text-gray-100">
+                              {addon.description}
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               

@@ -6,7 +6,8 @@ import {
   Briefcase, 
   PiggyBank, 
   MessageSquare, 
-  FileText 
+  FileText,
+  Zap
 } from 'lucide-react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink } from 'react-router-dom';
@@ -24,6 +25,7 @@ const navItems = [
   { name: 'Features', to: 'features', icon: Sparkles },
   { name: 'About', to: 'about', icon: Info },
   { name: 'Work', to: 'work', icon: Briefcase },
+  { name: 'GPT Builder', to: '/gpt-builder', icon: Zap, type: 'route' },
   { name: 'Pricing', to: 'pricing', icon: PiggyBank },
   { name: 'Contact', to: 'contact', icon: MessageSquare },
   { name: 'Documentation', to: '/documentation', icon: FileText, type: 'route' },

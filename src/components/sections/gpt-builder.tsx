@@ -3,7 +3,6 @@ import { Bot, Code2, FileText, BarChart3, Puzzle, Zap, MessageSquare, ExternalLi
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
 import { GptFeatureModal } from '@/components/gpt-feature-modal';
-import { GptPricingModal } from '@/components/gpt-pricing-modal';
 import {
   Card,
   CardContent,
@@ -82,9 +81,8 @@ const itemVariants = {
   },
 };
 
-export default function GptBuilder() {
+function GptBuilder() {
   const [selectedFeature, setSelectedFeature] = useState<typeof features[0] | null>(null);
-  const [isPricingModalOpen, setIsPricingModalOpen] = useState(false);
 
   useEffect(() => {
     // Create and load the chatbot script
@@ -153,20 +151,20 @@ export default function GptBuilder() {
             {features.map((feature, index) => (
               <motion.div key={index} variants={itemVariants}>
                 <Card
-                  className="relative h-full transform transition-transform hover:-translate-y-1 hover:shadow-lg border-gradient"
+                  className="relative transform transition-transform hover:-translate-y-1 hover:shadow-lg border-gradient"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-700/40 rounded-lg" />
-                  <CardHeader className="relative p-6">
-                    <feature.icon className="h-6 w-6 stroke-gray-400 mb-4" />
-                    <CardTitle className="text-xl">{feature.title}</CardTitle>
+                  <CardHeader className="relative p-4">
+                    <feature.icon className="h-5 w-5 stroke-gray-400 mb-2" />
+                    <CardTitle className="text-lg">{feature.title}</CardTitle>
                   </CardHeader>
-                  <CardContent className="relative p-6">
-                    <CardDescription className="text-base mb-4">
+                  <CardContent className="relative p-4 pt-0">
+                    <CardDescription className="text-sm">
                       {feature.description}
                     </CardDescription>
                     <Button
                       variant="ghost"
-                      className="text-sm"
+                      className="text-sm mt-2"
                       onClick={() => setSelectedFeature(feature)}
                     >
                       Learn More
@@ -206,14 +204,6 @@ export default function GptBuilder() {
                 View Documentation
                 <FileText className="ml-2 h-4 w-4" />
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                onClick={() => setIsPricingModalOpen(true)}
-              >
-                View Pricing
-                <BarChart3 className="ml-2 h-4 w-4" />
-              </Button>
             </div>
           </motion.div>
         </div>
@@ -226,11 +216,8 @@ export default function GptBuilder() {
           feature={selectedFeature}
         />
       )}
-
-      <GptPricingModal 
-        isOpen={isPricingModalOpen}
-        onClose={() => setIsPricingModalOpen(false)}
-      />
     </section>
   );
 }
+
+export { GptBuilder };
