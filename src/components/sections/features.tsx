@@ -95,7 +95,7 @@ export default function Features() {
   const [selectedFeature, setSelectedFeature] = useState<typeof features[0] | null>(null);
 
   return (
-    <section id="features" className="py-24">
+    <section id="features" className="py-24 bg-muted/50 relative overflow-hidden">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <motion.div
@@ -103,12 +103,12 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="space-y-2"
+            className="space-y-4"
           >
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gradient-primary">
               Features That Empower Your Growth
             </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-lg">
+            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
               Discover how our comprehensive suite of features can transform your
               digital presence and accelerate your success.
             </p>
@@ -119,30 +119,47 @@ export default function Features() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-8"
+            className="w-full grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12 items-stretch mt-8"
           >
             {features.map((feature, index) => (
               <motion.div 
                 key={index} 
                 variants={itemVariants}
+                className="h-full"
               >
-                <Card className="relative transform transition-transform hover:-translate-y-1 hover:shadow-lg border-gradient">
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-700/40 rounded-lg" />
-                  <CardHeader className="relative p-4">
-                    <feature.icon className="h-5 w-5 stroke-gray-400 mb-2" />
-                    <CardTitle className="text-lg">{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="relative p-4 pt-0">
-                    <CardDescription className="text-sm">
+                <Card 
+                  className="relative flex flex-col h-full transform transition-all duration-200 hover:scale-[1.02] border-white/20"
+                >
+                  <CardHeader className="relative space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <feature.icon className="h-6 w-6 text-primary" />
+                      <CardTitle className="text-2xl">{feature.title}</CardTitle>
+                    </div>
+                    <CardDescription className="text-base text-left">
                       {feature.description}
                     </CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-grow space-y-4">
+                    <div className="space-y-2">
+                      <h4 className="font-medium text-sm text-muted-foreground text-left">Key Benefits:</h4>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex items-start gap-2">
+                          <Rocket className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
+                          <p className="text-left">{feature.userBenefit}</p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <Zap className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
+                          <p className="text-left">{feature.businessValue}</p>
+                        </div>
+                      </div>
+                    </div>
                     <Button
-                      variant="ghost"
-                      className="text-sm mt-2"
+                      variant="outline"
+                      className="w-full mt-auto"
                       onClick={() => setSelectedFeature(feature)}
                     >
                       Learn More
-                      <ExternalLink className="ml-2 h-4 w-4 stroke-gray-400" />
+                      <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
                   </CardContent>
                 </Card>

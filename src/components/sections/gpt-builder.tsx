@@ -20,6 +20,7 @@ const features = [
     builderBenefit: "Focus on creativity, not complexity. Our no-code platform eliminates technical barriers, allowing you to bring your AI vision to life without programming expertise. Save time and resources while maintaining full control over your custom GPT.",
     companyValue: "We believe in democratizing AI technology. By removing technical barriers, we empower creators to innovate and shape the future of AI interactions, aligning with our mission to make advanced technology accessible to all.",
     personalMessage: "Whether you're building a customer service bot, a creative writing assistant, or an educational tutor, your imagination is the only limit. Transform your unique expertise into an engaging AI experience.",
+    highlighted: false
   },
   {
     title: "Knowledge Base Integration",
@@ -27,7 +28,7 @@ const features = [
     icon: FileText,
     builderBenefit: "Transform your documents, guides, and expertise into an interactive AI knowledge base. Our RAG system ensures your GPT provides accurate, context-aware responses based on your specific content.",
     companyValue: "Knowledge should be accessible and interactive. We're committed to creating technology that transforms static information into dynamic, intelligent conversations that drive value for businesses and users alike.",
-    personalMessage: "Your knowledge is unique and valuable. Whether it's technical documentation, creative writing, or industry expertise, bring your content to life through interactive AI conversations.",
+    personalMessage: "Your knowledge is unique and valuable. Whether it's technical documentation, creative writing, or industry expertise, bring your content to life through interactive AI conversations."
   },
   {
     title: "Custom AI Personas",
@@ -35,7 +36,7 @@ const features = [
     icon: Bot,
     builderBenefit: "Create AI personalities that perfectly match your brand voice or creative vision. From professional and formal to friendly and casual, you have complete control over how your GPT communicates.",
     companyValue: "We understand that personality drives engagement. Our platform enables authentic, branded interactions that build trust and create memorable user experiences, reflecting our commitment to meaningful AI interactions.",
-    personalMessage: "Give your AI a unique voice! Create characters, specialists, or brand ambassadors that engage users in exactly the way you envision. The personality possibilities are endless.",
+    personalMessage: "Give your AI a unique voice! Create characters, specialists, or brand ambassadors that engage users in exactly the way you envision. The personality possibilities are endless."
   },
   {
     title: "Simple Integration",
@@ -43,24 +44,24 @@ const features = [
     icon: Puzzle,
     builderBenefit: "Deploy your GPT anywhere with minimal effort. Our simple embedding process works seamlessly across platforms, making it easy to integrate your AI into existing websites or applications.",
     companyValue: "Integration should be effortless. We prioritize simplicity and compatibility, ensuring our technology enhances your digital presence without adding complexity to your workflow.",
-    personalMessage: "Your GPT deserves to be shared with the world. Whether it's on your personal blog or company website, we make it incredibly easy to showcase your AI creation.",
+    personalMessage: "Your GPT deserves to be shared with the world. Whether it's on your personal blog or company website, we make it incredibly easy to showcase your AI creation."
   },
   {
     title: "Analytics Dashboard",
     description: "Monitor chat sessions, user engagement, and performance metrics through our comprehensive analytics.",
     icon: BarChart3,
-    builderBenefit: "Gain valuable insights into how users interact with your GPT. Track engagement, identify popular topics, and optimize your AI's performance based on real user data.",
-    companyValue: "Data-driven improvement is core to our philosophy. We provide the tools and insights needed to continuously enhance AI interactions, ensuring maximum value for both creators and users.",
-    personalMessage: "Understanding your audience is key to success. Use our analytics to refine your GPT's knowledge and personality, creating even more engaging and helpful interactions.",
+    builderBenefit: "Gain valuable insights into how users interact with your GPT. Track engagement, analyze common queries, and optimize your AI's performance based on real user data.",
+    companyValue: "Data drives improvement. Our analytics empower builders to understand and enhance their AI's performance, supporting our commitment to continuous innovation and excellence.",
+    personalMessage: "Understanding your users is key to success. Get detailed insights into how people interact with your GPT and use that knowledge to make it even better."
   },
   {
     title: "Real-Time Chat",
     description: "Engage users with responsive, context-aware conversations powered by your custom knowledge base.",
     icon: MessageSquare,
     builderBenefit: "Provide instant, intelligent responses to your users 24/7. Our real-time chat system maintains context and delivers natural, engaging conversations that keep users coming back.",
-    companyValue: "We believe in the power of meaningful conversations. Our platform enables genuine, helpful interactions that create value for both businesses and their users, reflecting our commitment to impactful communication.",
-    personalMessage: "Every conversation is an opportunity to help, teach, or inspire. Create a GPT that connects with users in ways that matter to them, making each interaction special.",
-  },
+    companyValue: "Real-time interaction builds relationships. We're dedicated to creating seamless, responsive chat experiences that strengthen connections between businesses and their users.",
+    personalMessage: "Your GPT is always ready to chat! Provide instant support, engage with users, and create meaningful conversations that drive value for your audience."
+  }
 ];
 
 const containerVariants = {
@@ -68,17 +69,17 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-    },
-  },
+      staggerChildren: 0.1
+    }
+  }
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
-    y: 0,
-  },
+    y: 0
+  }
 };
 
 function GptBuilder() {
@@ -149,29 +150,36 @@ function GptBuilder() {
             className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-12"
           >
             {features.map((feature, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <Card
-                  className="relative transform transition-transform hover:-translate-y-1 hover:shadow-lg border-gradient"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-700/40 rounded-lg" />
-                  <CardHeader className="relative p-4">
-                    <feature.icon className="h-5 w-5 stroke-gray-400 mb-2" />
-                    <CardTitle className="text-lg">{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="relative p-4 pt-0">
-                    <CardDescription className="text-sm">
-                      {feature.description}
-                    </CardDescription>
-                    <Button
-                      variant="ghost"
-                      className="text-sm mt-2"
-                      onClick={() => setSelectedFeature(feature)}
-                    >
-                      Learn More
-                      <ExternalLink className="ml-2 h-4 w-4 stroke-gray-400" />
-                    </Button>
-                  </CardContent>
-                </Card>
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                className={`relative flex flex-col p-6 bg-background rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-800 ${
+                  feature.highlighted ? 'scale-105 shadow-xl' : ''
+                }`}
+              >
+                {feature.highlighted && (
+                  <div className="absolute -top-4 left-0 right-0 mx-auto w-32 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 px-3 py-1 text-sm font-medium text-white text-center">
+                    Featured
+                  </div>
+                )}
+                <div className="flex-1 space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <feature.icon className="h-5 w-5 text-blue-600" />
+                      <h3 className="text-xl font-bold">{feature.title}</h3>
+                    </div>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{feature.description}</p>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    className="text-sm mt-4 w-full justify-between"
+                    onClick={() => setSelectedFeature(feature)}
+                  >
+                    Learn More
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
               </motion.div>
             ))}
           </motion.div>

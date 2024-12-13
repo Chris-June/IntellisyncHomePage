@@ -65,17 +65,16 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="relative h-full transform transition-transform hover:-translate-y-1 hover:shadow-lg border-gradient">
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-700/40 rounded-lg" />
+              <Card className="relative flex flex-col h-full transform transition-all duration-200 hover:scale-[1.02] border-white/20">
                 <CardContent className="relative pt-6">
                   <div className="flex items-center space-x-2 mb-4">
-                    <BadgeCheck className="h-5 w-5 text-gray-400" />
-                    <h3 className="font-semibold text-xl">{value.title}</h3>
+                    <BadgeCheck className="h-5 w-5 text-primary" />
+                    <h3 className="font-semibold text-2xl">{value.title}</h3>
                   </div>
-                  <p className="text-muted-foreground mb-4">{value.description}</p>
+                  <p className="text-muted-foreground mb-4 text-left">{value.description}</p>
                   <Button
-                    variant="ghost"
-                    className="text-sm"
+                    variant="outline"
+                    className="w-full mt-auto"
                     onClick={() => setSelectedValue(value)}
                   >
                     Learn More

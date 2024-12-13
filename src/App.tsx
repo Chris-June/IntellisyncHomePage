@@ -18,10 +18,25 @@ import { Toaster } from '@/components/ui/sonner';
 import { useLocation } from 'react-router-dom';
 import { DialogProvider } from '@/components/ui/dialog-provider';
 import { VideoShowcase } from '@/components/sections/video-showcase';
+import { useEffect } from 'react';
+import emailjs from '@emailjs/browser';
+
+// TODO: EmailJS Setup
+// 1. Create an account at https://www.emailjs.com/
+// 2. Create a new Email Service (Gmail recommended)
+// 3. Create an Email Template using the HTML template provided in the comments below
+// 4. Get your Public Key from Account > API Keys
+// 5. Update the EMAILJS_PUBLIC_KEY in your environment variables
+
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
 
 function App() {
   const location = useLocation();
   const isStaticPage = ['/privacy-policy', '/terms-of-service', '/cookie-policy', '/documentation', '/gpt-builder'].includes(location.pathname);
+
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
 
   return (
     <ThemeProvider>
@@ -60,3 +75,29 @@ function App() {
 }
 
 export default App;
+
+/* EmailJS Template HTML:
+<h2>New GPT Builder Contact Form Submission</h2>
+
+<h3>Contact Information</h3>
+<p><strong>Name:</strong> {{from_name}}</p>
+<p><strong>Email:</strong> {{from_email}}</p>
+<p><strong>Company:</strong> {{company}}</p>
+<p><strong>Role:</strong> {{role}}</p>
+
+<h3>Project Details</h3>
+<p><strong>Industry:</strong> {{industry}}</p>
+<p><strong>Expected Monthly Users:</strong> {{expected_users}}</p>
+<p><strong>Implementation Timeline:</strong> {{timeline}}</p>
+<p><strong>Monthly Budget Range:</strong> {{budget}}</p>
+
+<h3>Requirements</h3>
+<p><strong>Primary Use Case:</strong></p>
+<p>{{use_case}}</p>
+
+<p><strong>Desired Features:</strong></p>
+<p>{{desired_features}}</p>
+
+<h3>Additional Information</h3>
+<p>{{additional_info}}</p>
+*/
