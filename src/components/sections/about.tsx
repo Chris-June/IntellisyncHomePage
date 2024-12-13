@@ -45,7 +45,7 @@ export default function About() {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gradient-primary">
             About IntelliSync Solutions
           </h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-lg">
+          <p className="mx-auto max-w-[900px] text-muted-foreground text-sm md:text-base leading-relaxed">
             Empowering industries with practical, AI-first solutions that drive growth and innovation.
           </p>
         </motion.div>
@@ -93,7 +93,7 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-16 text-center"
         >
-          <p className="mx-auto max-w-[800px] text-lg text-muted-foreground">
+          <p className="mx-auto max-w-[900px] text-muted-foreground text-sm md:text-base leading-relaxed">
             We simplify AI for businesses and personal brands, enabling growth through
             intuitive solutions that adapt to your unique requirements.
           </p>

@@ -49,8 +49,8 @@ export default function Pricing() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gradient-primary">
               Simple Transparent Honest
             </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-              Experience the unparalleled power of our AI solutions. Every plan comes with a one-time setup fee and ongoing monthly maintenance to ensure your AI stays optimized for maximum performance. Choose the perfect plan for your needs and watch your business thrive like never before.
+            <p className="mx-auto max-w-[900px] text-muted-foreground text-sm md:text-base leading-relaxed">
+            Elevate your business to extraordinary heights with the ultimate plan that seamlessly merges your vision with our custom web designs. Packed with cutting-edge features and limitless scalability, this is more than a plan—it's your launchpad to success!
             </p>
           </div>
           <div className="w-full grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12 items-stretch">

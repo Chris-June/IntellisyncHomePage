@@ -36,7 +36,7 @@ export default function Promotions() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gradient-primary">
               Special Offers
             </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-lg">
+            <p className="mx-auto max-w-[900px] text-muted-foreground text-sm md:text-base leading-relaxed">
               Take advantage of our limited-time promotions and exclusive offers
             </p>
           </motion.div>

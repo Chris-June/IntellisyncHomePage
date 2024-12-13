@@ -21,7 +21,7 @@ export default function Cta() {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gradient-primary">
             Ready to Revolutionize Your Digital Presence?
           </h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+          <p className="mx-auto max-w-[900px] text-muted-foreground text-sm md:text-base leading-relaxed">
             Experience the power of AI-driven web solutions tailored to your needs.
             Start your journey with IntelliSync today.
           </p>

@@ -108,7 +108,7 @@ export default function Features() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gradient-primary">
               Features That Empower Your Growth
             </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+            <p className="mx-auto max-w-[900px] text-muted-foreground text-sm md:text-base leading-relaxed">
               Discover how our comprehensive suite of features can transform your
               digital presence and accelerate your success.
             </p>

@@ -22,14 +22,14 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl space-y-4"
+            className="max-w-4xl space-y-4"
           >
             <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl/none text-gradient-primary">
               Unleash Digital Excellence with
               <br />
               AI-Powered Innovation
             </h1>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+            <p className="mx-auto max-w-[900px] text-muted-foreground text-sm md:text-base leading-relaxed">
             Transform your digital presence into a masterpiece of innovation. We forge revolutionary AI-powered platforms that transcend conventional boundaries, turning visionary ideas into reality. Whether you're a pioneer seeking to revolutionize your industry or a dreamer ready to make your mark, our cutting-edge solutions amplify your potential and catalyze extraordinary growth.
             </p>
           </motion.div>
